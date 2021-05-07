@@ -2,12 +2,18 @@ package com.stackroute.bookapp.service;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
 import com.stackroute.bookapp.model.Book;
 import com.stackroute.bookapp.repository.BookRepository;
 
-public class BookService {
 
-	BookRepository bookRepository = new BookRepository();
+@Service
+public class BookService {
+	
+	@Autowired
+	BookRepository bookRepository;
 	
 	public Book addBook(Book book) {
 		Book addedBook = bookRepository.addBook(book);

@@ -17,15 +17,15 @@
 		<table style="with: 50%" border="2">
 			<tr>
 				<td>Book Id</td>
-				<td><input type="text" name="bookid" /></td>
+				<td><input type="text" name="bookid" value="${book.bookid}"/></td>
 			</tr>
 			<tr>
 				<td>Book Name</td>
-				<td><input type="text" name="bookname" /></td>
+				<td><input type="text" name="bookname" value="${book.bookname}"/></td>
 			</tr>
 			<tr>
 				<td>Author</td>
-				<td><input type="text" name="author" /></td>
+				<td><input type="text" name="author" value="${book.author}"/></td>
 			</tr>
 			<tr>
 				<td colspan="2" align="center"><input type="submit"
@@ -34,6 +34,5 @@
 
 		</table>
 	</form>
-
 </body>
 </html>

@@ -1,5 +1,8 @@
 package com.stackroute.bookapp.model;
 
+import org.springframework.stereotype.Component;
+
+@Component
 public class Book {
 
 	 private String bookid;

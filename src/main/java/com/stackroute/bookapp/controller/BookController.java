@@ -2,6 +2,7 @@ package com.stackroute.bookapp.controller;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -15,8 +16,9 @@ import com.stackroute.bookapp.service.BookService;
 
 @Controller
 public class BookController {
-
-	BookService bookService = new BookService();
+	
+	@Autowired
+	BookService bookService;
 
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String getAllBooks(Model model) {
@@ -28,14 +30,12 @@ public class BookController {
 	@RequestMapping(value = "/addBook", method = RequestMethod.POST)
 	public String addBook(Model model, @RequestParam("bookid") String bookid, @RequestParam("bookname") String bookname,
 			@RequestParam("author") String author) {
-
 		Book newbook = new Book();
 		newbook.setBookid(bookid);
 		newbook.setBookname(bookname);
 		newbook.setAuthor(author);
 
 		bookService.addBook(newbook);
-
 		return "redirect:/";
 	}
 
@@ -46,17 +46,24 @@ public class BookController {
 
 	}
 
-	@RequestMapping(value = "/updateBook")
-	public String updateBook(Model model, @RequestParam String bookid) {
+	@RequestMapping(value = "/getBook/{bookid}", method = RequestMethod.GET)
+	public String getBookById(Model model, @PathVariable String bookid) {
 		Book book = bookService.getBookById(bookid);
 		model.addAttribute("book", book);
+		return "book";
+	}
+
+	@RequestMapping(value = "/updateBook", method = RequestMethod.GET)
+	public String updateBook(@RequestParam String bookid, Model model) {
+		Book book= bookService.getBookById(bookid);
+		model.addAttribute("book",book);
 		return "update";
 	}
 
-	@RequestMapping(value = "/updateSave")
-	public String updateSave(@ModelAttribute("book") Book book) {
+	@RequestMapping(value = "/updateSave", method = RequestMethod.POST)
+	public String updateSave(@ModelAttribute Book book) {
 		bookService.updateBook(book);
 		return "redirect:/";
 	}
-
+	
 }

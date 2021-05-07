@@ -62,7 +62,7 @@
 				<td>${book.author}</td>
 				<td><a href="deleteBook?bookid=${book.bookid}"><button>Delete</button></a></td>
 				<td><a href="updateBook?bookid=${book.bookid}"><button>Update</button></a></td>
-
+				<td><a href="getBook/${book.bookid}"><button>Get Info</button></a></td>
 			</tr>
 		</c:forEach>
 	</table>

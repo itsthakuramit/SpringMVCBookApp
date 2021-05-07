@@ -4,8 +4,12 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.ListIterator;
 
+import org.springframework.stereotype.Repository;
+
 import com.stackroute.bookapp.model.Book;
 
+
+@Repository
 public class BookRepository {
 
 	private List<Book> booklist = new ArrayList<>();
